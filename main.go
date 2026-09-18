@@ -6,15 +6,8 @@ import (
 )
 
 func main() {
-	c1 := []character.Character{
-		{
-			Nom:        "FJ",
-			Classe:     "elfe",
-			Niveau:     1,
-			Pvmax:      100,
-			Pv:         40,
-			Inventaire: []string{"potion de soin", "potion de soin", "potion de soin"},
-		},
-	}
+	c1 := character.InitCharacter(
+		"FJ", "elfe", 1, 100, 40, []string{"potion de soin", "potion de soin", "potion de soin"},
+	)
 	fmt.Println(c1)
 }
