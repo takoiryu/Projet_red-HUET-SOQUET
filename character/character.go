@@ -1,10 +1,10 @@
 package character
 
 type Character struct {
-	nom        string
-	classe     string
-	niveau     int
-	pvmax      int
-	pv         int
-	inventaire []string
+	Nom        string
+	Classe     string
+	Niveau     int
+	Pvmax      int
+	Pv         int
+	Inventaire []string
 }

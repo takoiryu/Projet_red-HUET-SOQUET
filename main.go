@@ -1,7 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"Projet_red/character"
+	"fmt"
+)
 
 func main() {
-	fmt.Println("debug")
+	c1 := []character.Character{
+		{
+			Nom:        "FJ",
+			Classe:     "elfe",
+			Niveau:     1,
+			Pvmax:      100,
+			Pv:         40,
+			Inventaire: []string{"potion de soin", "potion de soin", "potion de soin"},
+		},
+	}
+	fmt.Println(c1)
 }
