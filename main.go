@@ -22,7 +22,7 @@ func menu(joueur *character.Character) bool {
 	case "1":
 		joueur.DisplayInfo()
 	case "2":
-		inventaire.AfficherInvent()
+		inventaire.AfficherInvent(joueur.Inventaire)
 	case "3":
 		fmt.Println("Retour au jeu...")
 	case "4":
