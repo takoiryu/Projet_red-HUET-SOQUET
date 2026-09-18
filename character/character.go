@@ -1,6 +1,9 @@
 package character
 
-import "fmt"
+import (
+	"Projet_red/inventaire"
+	"fmt"
+)
 
 type Character struct {
 	Nom        string
@@ -8,10 +11,10 @@ type Character struct {
 	Niveau     int
 	Pvmax      int
 	Pv         int
-	Inventaire []string
+	Inventaire []inventaire.Invent
 }
 
-func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inventaire []string) Character {
+func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inventaire []inventaire.Invent) Character {
 	return Character{
 		Nom:        nom,
 		Classe:     classe,
@@ -32,8 +35,23 @@ func (c Character) DisplayInfo() {
 func (c *Character) CharacterCreation() {
 	fmt.Println("nom de votre personnage :")
 	fmt.Scan(&c.Nom)
-	fmt.Println("classe de votre personnage :")
-	fmt.Scan(&c.Classe)
+	var choix string
+	for {
+		fmt.Println("classe de votre personnage : \n 1:humain \n 2:nain \n 3:hobbit")
+		fmt.Scan(&choix)
+		switch choix {
+		case "1":
+			c.Classe = "humain"
+		case "2":
+			c.Classe = "nain"
+		case "3":
+			c.Classe = "hobbit"
+		default:
+			fmt.Println("\n Choix invalide ! Veuillez saisir 1, 2 ou 3.")
+			continue
+		}
+		break
+	}
 	fmt.Println("niveau de votre personnage :")
 	fmt.Scan(&c.Niveau)
 	fmt.Println("nombre de points de vie de votre personnage :")

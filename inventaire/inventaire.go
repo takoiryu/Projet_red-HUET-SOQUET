@@ -1,12 +1,12 @@
 package inventaire
 
-type Inventaire struct {
+type Invent struct {
 	NomObj   string
 	Quantite int
 }
 
-func InitInventaire() []Inventaire {
-	return []Inventaire{
+func InitInventaire() []Invent {
+	return []Invent{
 		{NomObj: "pièce d'or", Quantite: 100},
 		{NomObj: "potion de soin", Quantite: 0},
 		{NomObj: "potion de poison", Quantite: 0},
