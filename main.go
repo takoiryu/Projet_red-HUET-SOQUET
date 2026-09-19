@@ -15,8 +15,15 @@ func main() {
 }
 func menu(joueur *character.Character) bool {
 	var choixmenu string
-	fmt.Println("\n--- MENU ---")
-	fmt.Println("1:Afficher les informations du personnage \n 2:Accéder au contenu de l inventaire \n 3:retour \n 4:Quitter")
+	fmt.Println("\n┌──────────────────────────────────────────┐")
+	fmt.Println("│               MENU PRINCIPAL             │")
+	fmt.Println("├──────────────────────────────────────────┤")
+	fmt.Println("│  1. Afficher la fiche du personnage      │")
+	fmt.Println("│  2. Ouvrir le sac / inventaire           │")
+	fmt.Println("│  3. Retour au jeu                        │")
+	fmt.Println("│  4. Quitter l'aventure                   │")
+	fmt.Println("└──────────────────────────────────────────┘")
+	fmt.Print("➔ Votre choix : ")
 	fmt.Scan(&choixmenu)
 	switch choixmenu {
 	case "1":
@@ -24,11 +31,14 @@ func menu(joueur *character.Character) bool {
 	case "2":
 		inventaire.AfficherInvent(joueur.Inventaire)
 	case "3":
-		fmt.Println("Retour au jeu...")
+		fmt.Println("[i] Reprise de la partie...")
 	case "4":
+		fmt.Println("\n===========================================")
+		fmt.Println("    Merci d'avoir joué ! À bientôt...      ")
+		fmt.Println("===========================================")
 		return true
 	default:
-		fmt.Println("Choix invalide.")
+		fmt.Println("[!] Choix invalide. Veuillez saisir 1, 2, 3 ou 4.")
 	}
 	return false
 }

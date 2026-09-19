@@ -25,12 +25,34 @@ func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inv
 	}
 }
 func (c Character) DisplayInfo() {
-	fmt.Println("Nom du personnage : ", c.Nom)
-	fmt.Println("Classe du personnage : ", c.Classe)
-	fmt.Println("Niveau du personnage : ", c.Niveau)
-	fmt.Println("Nombre max de points de vie du personnage : ", c.Pvmax)
-	fmt.Println("Nombre actuel de points de vie du personnage : ", c.Pv)
-	fmt.Println("contenu de l'inventaire : ", c.Inventaire)
+	affpvmax := c.Pvmax
+	affpv := c.Pv
+	affbar := 0
+	barvid := 20
+	var divpv float64
+	var porcpv int
+	divpv = float64(affpv) / float64(affpvmax)
+	porcpv = int(divpv * 100)
+	affbar = porcpv / 5
+	barvid = 20 - affbar
+	fmt.Println("\n╔══════════════════════════════════════════════════╗")
+	fmt.Println("║               FICHE DE PERSONNAGE                ║")
+	fmt.Println("╠══════════════════════════════════════════════════╣")
+	fmt.Printf("║  Nom        : %-34s ║\n", c.Nom)
+	fmt.Printf("║  Classe     : %-34s ║\n", c.Classe)
+	fmt.Printf("║  Niveau     : %-34d ║\n", c.Niveau)
+	fmt.Println("╠══════════════════════════════════════════════════╣")
+	fmt.Printf("║  Santé      : ")
+	for affbar > 0 {
+		fmt.Printf("█")
+		affbar--
+	}
+	for barvid > 0 {
+		fmt.Printf("░")
+		barvid--
+	}
+	fmt.Printf("PV             ║\n")
+	fmt.Println("╚══════════════════════════════════════════════════╝")
 }
 func (c *Character) CharacterCreation() {
 	fmt.Println("nom de votre personnage :")
