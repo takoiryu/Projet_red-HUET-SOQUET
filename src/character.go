@@ -76,19 +76,18 @@ func (c *Character) CharacterCreation() {
 		switch choix {
 		case "1":
 			c.Classe = "humain"
+			c.Pvmax = 100
 		case "2":
 			c.Classe = "nain"
+			c.Pvmax = 120
 		case "3":
 			c.Classe = "hobbit"
+			c.Pvmax = 80
 		default:
 			fmt.Println("\n Choix invalide ! Veuillez saisir 1, 2 ou 3.")
 			continue
 		}
 		break
 	}
-	fmt.Println("niveau de votre personnage :")
-	fmt.Scan(&c.Niveau)
-	fmt.Println("nombre de points de vie de votre personnage :")
-	fmt.Scan(&c.Pvmax)
-	c.Pv = 1
+	c.Pv = c.Pvmax / 2
 }
