@@ -10,6 +10,7 @@ func main() {
 	joueur.Inventaire = InitInventaire()
 	for !menu(&joueur) {
 	}
+
 }
 func menu(joueur *Character) bool {
 	var choixmenu string
