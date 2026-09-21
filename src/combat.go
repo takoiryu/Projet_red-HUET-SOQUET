@@ -17,7 +17,7 @@ func goblinPattern(joueur *Character, gobelin *Goblins, tour int) {
 	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
 }
 
-func characterTurn(joueur *character.Character, gobelin *monstres.Goblins) {
+func characterTurn(joueur *Character, gobelin *Goblins) {
 	var choix string
 
 	for {
