@@ -12,9 +12,13 @@ func InitInventaire() []Invent {
 		{NomObj: "pièce d'or", Quantite: 100},
 		{NomObj: "potion de soin", Quantite: 0},
 		{NomObj: "potion de poison", Quantite: 0},
-		{NomObj: "armure en cuir", Quantite: 0},
-		{NomObj: "armure en fer forgé", Quantite: 0},
-		{NomObj: "armure en mithril", Quantite: 0},
+		{NomObj: "chapeau en cuir", Quantite: 0},
+		{NomObj: "tunique en cuir", Quantite: 0},
+		{NomObj: "bottes en cuir", Quantite: 0},
+		{NomObj: "heaume en fer forgé", Quantite: 0},
+		{NomObj: "plastron en fer forgé", Quantite: 0},
+		{NomObj: "bottes en fer forgé", Quantite: 0},
+		{NomObj: "cote de maille en mithril", Quantite: 0},
 	}
 }
 func UtiliserObjet(lst []Invent, nomObjet string) bool {
@@ -74,14 +78,37 @@ func AfficherInvent(lst []Invent) {
 				var typearm string
 				fmt.Print("cuir fer ou mithril ? (c/f/m) : ")
 				fmt.Scan(&typearm)
-
+				var piece string
 				switch typearm {
 				case "c":
-					UtiliserObjet(lst, "armure en cuir")
+					fmt.Println("vous choisiser l'armure en cuir, quelle piece ? (tete/corp/pieds)t/c/p")
+					fmt.Scan(&piece)
+					switch piece {
+					case "t":
+						UtiliserObjet(lst, "chapeau en cuir")
+					case "c":
+						UtiliserObjet(lst, "plastron en fer forgé")
+					case "p":
+						UtiliserObjet(lst, "bottes en cuir")
+					default:
+						fmt.Println("Choix de piece invalide")
+					}
+
 				case "f":
-					UtiliserObjet(lst, "armure en fer forgé")
+					fmt.Println("vous choisiser l'armure en fer forgé, quelle piece ? (tete/corp/pieds) t/c/p")
+					fmt.Scan(&piece)
+					switch piece {
+					case "t":
+						UtiliserObjet(lst, "heaume en fer forgé")
+					case "c":
+						UtiliserObjet(lst, "tunique en cuir")
+					case "p":
+						UtiliserObjet(lst, "bottes en fer forgé")
+					default:
+						fmt.Println("Choix de piece invalide")
+					}
 				case "m":
-					UtiliserObjet(lst, "armure en mithril")
+					UtiliserObjet(lst, "cote de maille en mithril")
 				default:
 					fmt.Println("Choix d'armure invalide.")
 				}

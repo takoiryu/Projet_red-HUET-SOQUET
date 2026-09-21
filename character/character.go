@@ -5,6 +5,11 @@ import (
 	"fmt"
 )
 
+type Equipement struct {
+	Tete  string
+	Torse string
+	Pieds string
+}
 type Character struct {
 	Nom        string
 	Classe     string
@@ -12,9 +17,10 @@ type Character struct {
 	Pvmax      int
 	Pv         int
 	Inventaire []inventaire.Invent
+	Equipement Equipement
 }
 
-func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inventaire []inventaire.Invent) Character {
+func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inventaire []inventaire.Invent, equipment Equipement) Character {
 	return Character{
 		Nom:        nom,
 		Classe:     classe,
@@ -22,6 +28,7 @@ func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inv
 		Pvmax:      pvmax,
 		Pv:         pv,
 		Inventaire: inventaire,
+		Equipement: equipment,
 	}
 }
 func (c Character) DisplayInfo() {
@@ -52,6 +59,12 @@ func (c Character) DisplayInfo() {
 		barvid--
 	}
 	fmt.Printf("PV             ║\n")
+	fmt.Println("╠══════════════════════════════════════════════════╣")
+	fmt.Println("║                   ÉQUIPEMENT                     ║")
+	fmt.Println("╠══════════════════════════════════════════════════╣")
+	fmt.Printf("║  Tête       : %-34s ║\n", c.Equipement.Tete)
+	fmt.Printf("║  Torse      : %-34s ║\n", c.Equipement.Torse)
+	fmt.Printf("║  Pieds      : %-34s ║\n", c.Equipement.Pieds)
 	fmt.Println("╚══════════════════════════════════════════════════╝")
 }
 func (c *Character) CharacterCreation() {
