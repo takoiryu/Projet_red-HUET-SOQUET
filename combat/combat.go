@@ -31,7 +31,6 @@ func characterTurn(joueur *character.Character, gobelin *monstres.Goblins) {
 
 		switch choix {
 		case "1":
-			// Attaque basique (5 dégâts)
 			degats := 5
 			gobelin.Pv -= degats
 			if gobelin.Pv < 0 {
@@ -40,11 +39,10 @@ func characterTurn(joueur *character.Character, gobelin *monstres.Goblins) {
 
 			fmt.Printf("\n%s utilise Attaque basique et inflige %d dégâts à %s !\n", joueur.Nom, degats, gobelin.Nom)
 			fmt.Printf("PV restants de %s : %d/%d\n", gobelin.Nom, gobelin.Pv, gobelin.Pvmax)
-			return // Fin du tour du joueur
+			return
 
 		case "2":
 			fmt.Println("\n[Inventaire]")
-			// On continue la boucle pour que le joueur puisse choisir d'attaquer
 
 		default:
 			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
