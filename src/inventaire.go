@@ -21,6 +21,9 @@ func InitInventaire() []Invent {
 		{NomObj: "plastron en fer forgé", Quantite: 0},
 		{NomObj: "bottes en fer forgé", Quantite: 0},
 		{NomObj: "cote de maille en mithril", Quantite: 0},
+		{NomObj: "cuir de goblin", Quantite: 0},
+		{NomObj: "lingots de fer", Quantite: 0},
+		{NomObj: "minerais de mithril", Quantite: 0},
 	}
 }
 func UtiliserObjet(joueur *Character, nomObjet string) bool {
