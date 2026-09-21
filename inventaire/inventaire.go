@@ -34,16 +34,18 @@ func UtiliserObjet(lst []Invent, nomObjet string) bool {
 	return false
 }
 func AfficherInvent(lst []Invent) {
-	fmt.Println("===INVENTAIRE===")
+	fmt.Println("\n╔══════════════════════════════════════════╗")
+	fmt.Println("║               INVENTAIRE                 ║")
+	fmt.Println("╠══════════════════════════════════════════╣")
 	vide := true
 	for _, item := range lst {
 		if item.Quantite > 0 {
-			fmt.Println(item.NomObj, ":", item.Quantite)
+			fmt.Printf("║  • %s : %d ║\n", item.NomObj, item.Quantite)
 			vide = false
 		}
 	}
 	if vide {
-		fmt.Println("Votre inventaire est vide.")
+		fmt.Println("║        (Votre sac est totalement vide)   ║")
 	} else {
 		var use string
 
@@ -86,4 +88,5 @@ func AfficherInvent(lst []Invent) {
 			}
 		}
 	}
+	fmt.Println("╚══════════════════════════════════════════╝")
 }
