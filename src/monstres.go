@@ -1,4 +1,4 @@
-package monstres
+package main
 
 type Goblins struct {
 	Nom    string

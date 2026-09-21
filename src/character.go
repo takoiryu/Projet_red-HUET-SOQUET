@@ -1,7 +1,6 @@
-package character
+package main
 
 import (
-	"Projet_red/inventaire"
 	"fmt"
 )
 
@@ -16,11 +15,11 @@ type Character struct {
 	Niveau     int
 	Pvmax      int
 	Pv         int
-	Inventaire []inventaire.Invent
+	Inventaire []Invent
 	Equipement Equipement
 }
 
-func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inventaire []inventaire.Invent, equipment Equipement) Character {
+func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inventaire []Invent, equipment Equipement) Character {
 	return Character{
 		Nom:        nom,
 		Classe:     classe,
@@ -91,5 +90,5 @@ func (c *Character) CharacterCreation() {
 	fmt.Scan(&c.Niveau)
 	fmt.Println("nombre de points de vie de votre personnage :")
 	fmt.Scan(&c.Pvmax)
-	c.Pv = c.Pvmax
+	c.Pv = 1
 }

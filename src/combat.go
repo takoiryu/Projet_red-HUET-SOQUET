@@ -1,12 +1,10 @@
-package combat
+package main
 
 import (
-	"Projet_red/character"
-	"Projet_red/monstres"
 	"fmt"
 )
 
-func goblinPattern(joueur *character.Character, gobelin *monstres.Goblins, tour int) {
+func goblinPattern(joueur *Character, gobelin *Goblins, tour int) {
 	degats := gobelin.Att
 
 	if tour%3 == 0 {
