@@ -1,6 +1,6 @@
 package monstres
 
-type Gobelins struct {
+type Goblins struct {
 	Nom    string
 	Niveau int
 	Pvmax  int
@@ -8,8 +8,8 @@ type Gobelins struct {
 	Att    int
 }
 
-func initGobelins() Gobelins {
-	return Gobelins{
+func initGobelins() Goblins {
+	return Goblins{
 		Nom:    "Maxence",
 		Niveau: 1,
 		Pvmax:  40,
