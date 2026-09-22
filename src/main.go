@@ -9,14 +9,15 @@ func main() {
 	joueur.CharacterCreation()
 	joueur.Inventaire = InitInventaire()
 	magazin := InitGandalf()
-	for !menu(&joueur, magazin) {
+	forge := InitGimly()
+	for !menu(&joueur, magazin, forge) {
 	}
 
 }
-func menu(joueur *Character, magazin []Gandalf) bool {
+func menu(joueur *Character, magazin []Gandalf, forge []Gimly) bool {
 	var choixmenu string
 	fmt.Println("\n--- MENU ---")
-	fmt.Println("1:Afficher les informations du personnage \n 2:Accéder au contenu de l inventaire \n 3:marchand\n 4:retour \n 5:Quitter")
+	fmt.Println("1:Afficher les informations du personnage \n 2:Accéder au contenu de l inventaire \n 3:marchand \n 4:forgeron \n 5:retour \n 6:Quitter")
 	fmt.Scan(&choixmenu)
 	switch choixmenu {
 	case "1":
@@ -26,8 +27,10 @@ func menu(joueur *Character, magazin []Gandalf) bool {
 	case "3":
 		AffGandalf(magazin, joueur)
 	case "4":
-		fmt.Println("Retour au jeu...")
+		AffGandalf(magazin, joueur)
 	case "5":
+		fmt.Println("Retour au jeu...")
+	case "6":
 		return true
 	default:
 		fmt.Println("Choix invalide.")
