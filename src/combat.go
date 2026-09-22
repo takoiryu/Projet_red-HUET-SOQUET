@@ -19,11 +19,12 @@ func goblinTurn(joueur *Character, gobelin *Goblins, tour int) {
 
 func characterTurn1(joueur *Character, monstre *Goblins) {
 	var choix string
-
+	magazin := InitGandalf()
+	forge := InitGimly()
 	for {
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
-		fmt.Println("2 : Inventaire")
+		fmt.Println("2 : Menu")
 		fmt.Print("Choix : ")
 		fmt.Scan(&choix)
 
@@ -40,9 +41,8 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 			return
 
 		case "2":
-			AfficherInvent(joueur)
+			menu(joueur, magazin, forge)
 			return
-
 		default:
 			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
 		}
