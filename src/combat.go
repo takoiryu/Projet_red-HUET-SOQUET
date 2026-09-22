@@ -49,6 +49,18 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 	}
 }
 
+func isDead(joueur *Character) {
+	magazin := InitGandalf()
+	forge := InitGimly()
+	if joueur.Pv <= 0 {
+		fmt.Printf("\nDéfaite...  vous êtes KO.\n")
+		fmt.Println("Retour au menu principal...")
+		menu(joueur, magazin, forge)
+		return
+	}
+
+}
+
 func trainingFight(joueur *Character) {
 	gobelin := initGobelins()
 	tour := 1
@@ -67,12 +79,6 @@ func trainingFight(joueur *Character) {
 		}
 
 		goblinTurn(joueur, &gobelin, tour)
-
-		if joueur.Pv <= 0 {
-			fmt.Printf("\nDéfaite... %s vous a mis KO.\n", gobelin.Nom)
-			fmt.Println("Retour au menu principal...")
-			return
-		}
 
 		tour++
 	}
