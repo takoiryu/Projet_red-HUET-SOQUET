@@ -29,7 +29,7 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 
 		switch choix {
 		case "1":
-			degats := joueur.Att
+			degats := joueur.Atk
 			monstre.Pv -= degats
 			if monstre.Pv < 0 {
 				monstre.Pv = 0
@@ -40,9 +40,9 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 			return
 
 		case "2":
-			if AfficherInvent(joueur * Character) {
-				return
-			}
+			AfficherInvent(joueur)
+			return
+
 		default:
 			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
 		}
