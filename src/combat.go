@@ -48,3 +48,32 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 		}
 	}
 }
+
+func trainingFight(joueur *Character) {
+	gobelin := initGobelins()
+	tour := 1
+	fmt.Println("\n==========================================")
+	fmt.Printf("   DÉBUT DU COMBAT contre %s\n", gobelin.Nom)
+	fmt.Println("==========================================")
+	for joueur.Pv > 0 && gobelin.Pv > 0 {
+		fmt.Printf("\n======TOUR %d ======\n", tour)
+
+		characterTurn1(joueur, &gobelin)
+
+		if gobelin.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Vous avez terrassé %s !\n", gobelin.Nom)
+			fmt.Println("Retour au menu principal...")
+			return
+		}
+
+		goblinTurn(joueur, &gobelin, tour)
+
+		if joueur.Pv <= 0 {
+			fmt.Printf("\nDéfaite... %s vous a mis KO.\n", gobelin.Nom)
+			fmt.Println("Retour au menu principal...")
+			return
+		}
+
+		tour++
+	}
+}
