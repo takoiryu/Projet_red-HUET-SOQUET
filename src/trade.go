@@ -118,56 +118,66 @@ func AcheterForge(joueur *Character, armure Gimly) {
 		return
 	}
 	// et la si on a le necessaire POUF! y sont plus dans l'inventaire
-	retirerIngred := map[string]int{
-		"pièce d'or":          recette.PrixOr,
-		"lingots de fer":      recette.Fer,
-		"cuir de goblin":      recette.Cuir,
-		"minerais de mithril": recette.Mithril,
-	}
-	for i := range joueur.Inventaire {
-		nom := joueur.Inventaire[i].NomObj
-		if qte, besoin := retirerIngred[nom]; besoin {
-			joueur.Inventaire[i].Quantite -= qte
+	trop := LimitInv(joueur.Inventaire, joueur)
+	if trop == false {
+		retirerIngred := map[string]int{
+			"pièce d'or":          recette.PrixOr,
+			"lingots de fer":      recette.Fer,
+			"cuir de goblin":      recette.Cuir,
+			"minerais de mithril": recette.Mithril,
 		}
-	}
-	//la ca ajoutte le reultat a l'inv
-	trouve := false
-	for i := range joueur.Inventaire {
-		if joueur.Inventaire[i].NomObj == armure.Objarm {
-			joueur.Inventaire[i].Quantite++
-			trouve = true
-			break
+		for i := range joueur.Inventaire {
+			nom := joueur.Inventaire[i].NomObj
+			if qte, besoin := retirerIngred[nom]; besoin {
+				joueur.Inventaire[i].Quantite -= qte
+			}
 		}
-	}
-	if !trouve {
-		joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: armure.Objarm, Quantite: 1})
-	}
+		//la ca ajoutte le reultat a l'inv
+		trouve := false
+		for i := range joueur.Inventaire {
+			if joueur.Inventaire[i].NomObj == armure.Objarm {
+				joueur.Inventaire[i].Quantite++
+				trouve = true
+				break
+			}
+		}
+		if !trouve {
+			joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: armure.Objarm, Quantite: 1})
+		}
 
-	fmt.Printf("Gimly a forgé votre %s !\n", armure.Objarm)
+		fmt.Printf("Gimly a forgé votre %s !\n", armure.Objarm)
+	} else {
+		fmt.Println("plus de place dans votre inventaire")
+	}
 }
 func AcheterObjet(joueur *Character, article Gandalf) {
-	indexOr := -1
-	for i := range joueur.Inventaire {
-		if joueur.Inventaire[i].NomObj == "pièce d'or" {
-			indexOr = i
-			break
+	trop := LimitInv(joueur.Inventaire, joueur)
+	if trop == false {
+		indexOr := -1
+		for i := range joueur.Inventaire {
+			if joueur.Inventaire[i].NomObj == "pièce d'or" {
+				indexOr = i
+				break
+			}
 		}
-	}
-	if indexOr == -1 || joueur.Inventaire[indexOr].Quantite < article.Prix {
-		fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)|n", article.Obj, article.Prix)
-		return
-	}
-	joueur.Inventaire[indexOr].Quantite -= article.Prix
-	trouve := false
-	for i := range joueur.Inventaire {
-		if joueur.Inventaire[i].NomObj == article.Obj {
-			joueur.Inventaire[i].Quantite++
-			trouve = true
-			break
+		if indexOr == -1 || joueur.Inventaire[indexOr].Quantite < article.Prix {
+			fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)|n", article.Obj, article.Prix)
+			return
 		}
+		joueur.Inventaire[indexOr].Quantite -= article.Prix
+		trouve := false
+		for i := range joueur.Inventaire {
+			if joueur.Inventaire[i].NomObj == article.Obj {
+				joueur.Inventaire[i].Quantite++
+				trouve = true
+				break
+			}
+		}
+		if !trouve {
+			joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: article.Obj, Quantite: 1})
+		}
+		fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)|n", article.Obj, article.Prix)
+	} else {
+		fmt.Println("plus de place dans votre inventaire")
 	}
-	if !trouve {
-		joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: article.Obj, Quantite: 1})
-	}
-	fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)|n", article.Obj, article.Prix)
 }

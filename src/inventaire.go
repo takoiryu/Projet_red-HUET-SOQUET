@@ -136,3 +136,13 @@ func UtilPot(c *Character) {
 		c.Pv = c.Pvmax
 	}
 }
+func LimitInv(inv []Invent, taille *Character) bool {
+	somme := 0
+	for i := range inv {
+		somme += inv[i].Quantite
+		if somme >= taille.TailleMax {
+			return true
+		}
+	}
+	return false
+}

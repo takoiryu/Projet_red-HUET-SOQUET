@@ -18,6 +18,7 @@ type Character struct {
 	Atk        int
 	Inventaire []Invent
 	Equipement Equipement
+	TailleMax  int
 }
 
 func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, atk int, inventaire []Invent, equipment Equipement) Character {
@@ -30,6 +31,7 @@ func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, atk
 		Atk:        atk,
 		Inventaire: inventaire,
 		Equipement: equipment,
+		TailleMax:  10,
 	}
 }
 

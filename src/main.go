@@ -27,7 +27,7 @@ func menu(joueur *Character, magazin []Gandalf, forge []Gimly) bool {
 	case "3":
 		AffGandalf(magazin, joueur)
 	case "4":
-		AffGandalf(magazin, joueur)
+		AffGimly(forge, joueur)
 	case "5":
 		fmt.Println("Retour au jeu...")
 	case "6":
