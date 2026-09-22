@@ -15,17 +15,19 @@ type Character struct {
 	Niveau     int
 	Pvmax      int
 	Pv         int
+	Atk        int
 	Inventaire []Invent
 	Equipement Equipement
 }
 
-func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, inventaire []Invent, equipment Equipement) Character {
+func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, atk int, inventaire []Invent, equipment Equipement) Character {
 	return Character{
 		Nom:        nom,
 		Classe:     classe,
 		Niveau:     niveau,
 		Pvmax:      pvmax,
 		Pv:         pv,
+		Atk:        atk,
 		Inventaire: inventaire,
 		Equipement: equipment,
 	}
