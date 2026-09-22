@@ -58,7 +58,6 @@ func isDead(joueur *Character) {
 		menu(joueur, magazin, forge)
 		return
 	}
-
 }
 
 func trainingFight(joueur *Character) {
