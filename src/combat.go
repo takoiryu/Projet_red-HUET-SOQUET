@@ -17,7 +17,7 @@ func goblinPattern(joueur *Character, gobelin *Goblins, tour int) {
 	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
 }
 
-func characterTurn(joueur *Character, gobelin *Goblins) {
+func characterTurn(joueur *Character, monstre *Goblins) {
 	var choix string
 
 	for {
@@ -29,14 +29,14 @@ func characterTurn(joueur *Character, gobelin *Goblins) {
 
 		switch choix {
 		case "1":
-			degats := 5
-			gobelin.Pv -= degats
-			if gobelin.Pv < 0 {
-				gobelin.Pv = 0
+			degats := joueur.Att
+			monstre.Pv -= degats
+			if monstre.Pv < 0 {
+				monstre.Pv = 0
 			}
 
-			fmt.Printf("\n%s utilise Attaque basique et inflige %d dégâts à %s !\n", joueur.Nom, degats, gobelin.Nom)
-			fmt.Printf("PV restants de %s : %d/%d\n", gobelin.Nom, gobelin.Pv, gobelin.Pvmax)
+			fmt.Printf("\n%s utilise Attaque basique et inflige %d dégâts à %s !\n", joueur.Nom, degats, monstre.Nom)
+			fmt.Printf("PV restants de %s : %d/%d\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 			return
 
 		case "2":
