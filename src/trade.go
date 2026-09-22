@@ -35,6 +35,7 @@ func InitGandalf() []Gandalf {
 		{Obj: "cuir de goblin", Prix: 2},
 		{Obj: "lingots de fer", Prix: 10},
 		{Obj: "minerais de mithril", Prix: 30},
+		{Obj: "Amelioration d'inventaire", Prix: 30},
 	}
 }
 func InitGimly() []Gimly {
@@ -151,6 +152,30 @@ func AcheterForge(joueur *Character, armure Gimly) {
 	}
 }
 func AcheterObjet(joueur *Character, article Gandalf) {
+	if article.Obj == "Amelioration d'inventaire" {
+		if joueur.NbrAmeliorationSac >= 3 {
+			fmt.Println("Vous avez déjà amélioré votre sac 3 fois ! C'est le maximum.")
+			return
+		}
+		indexOr := -1
+		for i := range joueur.Inventaire {
+			if joueur.Inventaire[i].NomObj == "pièce d'or" {
+				indexOr = i
+				break
+			}
+		}
+
+		if indexOr == -1 || joueur.Inventaire[indexOr].Quantite < article.Prix {
+			fmt.Printf("Vous n'avez pas assez d'or pour acheter %s !\n", article.Obj)
+			return
+		}
+		joueur.Inventaire[indexOr].Quantite -= article.Prix
+		joueur.TailleMax = joueur.TailleMax + 10
+		joueur.NbrAmeliorationSac = joueur.NbrAmeliorationSac + 1
+
+		fmt.Printf("Sac agrandi ! Vous pouvez porter %d objets. (Amélioration %d sur 3)\n", joueur.TailleMax, joueur.NbrAmeliorationSac)
+		return
+	}
 	trop := LimitInv(joueur.Inventaire, joueur)
 	if trop == false {
 		indexOr := -1

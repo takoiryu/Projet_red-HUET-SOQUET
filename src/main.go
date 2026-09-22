@@ -8,10 +8,11 @@ func main() {
 	var joueur Character
 	joueur.CharacterCreation()
 	joueur.Inventaire = InitInventaire()
-	magazin := InitGandalf()
-	forge := InitGimly()
-	for !menu(&joueur, magazin, forge) {
-	}
+	//magazin := InitGandalf()
+	//forge := InitGimly()
+	trainingFight(&joueur)
+	//for !menu(&joueur, magazin, forge) {
+	//}
 
 }
 func menu(joueur *Character, magazin []Gandalf, forge []Gimly) bool {

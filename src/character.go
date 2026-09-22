@@ -10,15 +10,16 @@ type Equipement struct {
 	Pieds string
 }
 type Character struct {
-	Nom        string
-	Classe     string
-	Niveau     int
-	Pvmax      int
-	Pv         int
-	Atk        int
-	Inventaire []Invent
-	Equipement Equipement
-	TailleMax  int
+	Nom                string
+	Classe             string
+	Niveau             int
+	Pvmax              int
+	Pv                 int
+	Atk                int
+	Inventaire         []Invent
+	Equipement         Equipement
+	TailleMax          int
+	NbrAmeliorationSac int
 }
 
 func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, atk int, inventaire []Invent, equipment Equipement) Character {
