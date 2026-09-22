@@ -11,6 +11,7 @@ func main() {
 	magazin := InitGandalf()
 	for !menu(&joueur, magazin) {
 	}
+
 }
 func menu(joueur *Character, magazin []Gandalf) bool {
 	var choixmenu string
