@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func goblinPattern(joueur *Character, gobelin *Goblins, tour int) {
+func goblinTurn(joueur *Character, gobelin *Goblins, tour int) {
 	degats := gobelin.Att
 	if tour%3 == 0 {
 		degats = gobelin.Att * 2
@@ -17,7 +17,7 @@ func goblinPattern(joueur *Character, gobelin *Goblins, tour int) {
 	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
 }
 
-func characterTurn(joueur *Character, monstre *Goblins) {
+func characterTurn1(joueur *Character, monstre *Goblins) {
 	var choix string
 
 	for {
@@ -29,19 +29,20 @@ func characterTurn(joueur *Character, monstre *Goblins) {
 
 		switch choix {
 		case "1":
-			degats := joueur.Att
+			degats := joueur.Atk
 			monstre.Pv -= degats
 			if monstre.Pv < 0 {
 				monstre.Pv = 0
 			}
 
-			fmt.Printf("\n%s utilise Attaque basique et inflige %d dégâts à %s !\n", joueur.Nom, degats, monstre.Nom)
+			fmt.Printf("\n%s Utilise Attaque basique et inflige %d dégâts à %s !\n", joueur.Nom, degats, monstre.Nom)
 			fmt.Printf("PV restants de %s : %d/%d\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 			return
 
 		case "2":
-			fmt.Println("\n[Inventaire]")
-
+			if AfficherInvent(joueur * Character) {
+				return
+			}
 		default:
 			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
 		}
