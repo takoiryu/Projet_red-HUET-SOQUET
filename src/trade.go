@@ -6,6 +6,10 @@ type Gandalf struct {
 	Obj  string
 	Prix int
 }
+type Gimly struct {
+	Objarm  string
+	Prixarm int
+}
 
 func InitGandalf() []Gandalf {
 	return []Gandalf{
@@ -20,8 +24,16 @@ func InitGandalf() []Gandalf {
 		{Obj: "minerais de mithril", Prix: 30},
 	}
 }
+func InitGimly() []Gimly {
+	return []Gimly{
+		{Objarm: "heaume en fer forgé", Prixarm: 2},
+		{Objarm: "plastron en fer forgé", Prixarm: 3},
+		{Objarm: "bottes en fer forgé", Prixarm: 1},
+		{Objarm: "cote de maille en mithril", Prixarm: 10},
+	}
+}
 func AffGandalf(shop []Gandalf, joueur *Character) {
-	fmt.Println("\n╔══════════════════════════════════════════╗")
+	fmt.Println("|n╔══════════════════════════════════════════╗")
 	fmt.Println("║            BOUTIQUE DE GANDALF           ║")
 	fmt.Println("╠══════════════════════════════════════════╣")
 	for i, item := range shop {
@@ -37,11 +49,12 @@ func AffGandalf(shop []Gandalf, joueur *Character) {
 		switch {
 		case choix == 0:
 			fmt.Println("À bientôt dans ma boutique !")
-			return // Quitte la fonction et sort du magasin
+			return
 
 		case choix > 0 && choix <= len(shop):
 			AcheterObjet(joueur, shop[choix-1])
-
+		case choix == 484:
+			Easteregg()
 		default:
 			fmt.Println("Choix invalide, veuillez réessayer.")
 		}
@@ -56,7 +69,7 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 		}
 	}
 	if indexOr == -1 || joueur.Inventaire[indexOr].Quantite < article.Prix {
-		fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)\n", article.Obj, article.Prix)
+		fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)|n", article.Obj, article.Prix)
 		return
 	}
 	joueur.Inventaire[indexOr].Quantite -= article.Prix
@@ -71,5 +84,5 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 	if !trouve {
 		joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: article.Obj, Quantite: 1})
 	}
-	fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)\n", article.Obj, article.Prix)
+	fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)|n", article.Obj, article.Prix)
 }
