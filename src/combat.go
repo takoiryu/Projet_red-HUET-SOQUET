@@ -29,7 +29,7 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 
 		switch choix {
 		case "1":
-			degats := joueur.Atk
+			degats := joueur.Att
 			monstre.Pv -= degats
 			if monstre.Pv < 0 {
 				monstre.Pv = 0
