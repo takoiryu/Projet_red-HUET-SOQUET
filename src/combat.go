@@ -30,16 +30,21 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 
 		switch choix {
 		case "1":
-			degats := joueur.Atk
-			monstre.Pv -= degats
-			if monstre.Pv < 0 {
-				monstre.Pv = 0
+			var typesort string
+			fmt.Println("Choisissez votre sort :")
+			fmt.Println("1 : Coup de poing")
+			fmt.Println("2 : Boule de feu")
+			fmt.Print("Votre choix : ")
+			fmt.Scan(&typesort)
+
+			switch typesort {
+			case "1":
+				spellBook(joueur, "Coup de poing")
+			case "2":
+				spellBook(joueur, "Boule de feu")
+			default:
+				fmt.Println("Choix invalide.")
 			}
-
-			fmt.Printf("\n%s Utilise Attaque basique et inflige %d dégâts à %s !\n", joueur.Nom, degats, monstre.Nom)
-			fmt.Printf("PV restants de %s : %d/%d\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
-			return
-
 		case "2":
 			menu(joueur, magazin, forge)
 			return
@@ -47,6 +52,19 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
 		}
 	}
+}
+
+func spellBook(joueur *Character, sort string) bool {
+	for _, s := range joueur.SkillList {
+		if s == sort {
+			fmt.Printf("\nVous connaissez déjà le sort : %s !\n", sort)
+			return false
+		}
+	}
+
+	joueur.SkillList = append(joueur.SkillList, sort)
+	fmt.Printf("\nFélicitations ! Vous avez appris le sort : %s !\n", sort)
+	return true
 }
 
 func isDead(joueur *Character) {

@@ -19,3 +19,6 @@ Ennemi ;
         Gobelins
         Orcs
         Sauron
+
+			fmt.Printf("\n%s Utilise Attaque magique et inflige %d dégâts à %s !\n", joueur.Nom, degats, monstre.Nom)
+			fmt.Printf("PV restants de %s : %d/%d\n", monstre.Nom, monstre.Pv, monstre.Pvmax)

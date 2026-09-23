@@ -13,6 +13,7 @@ func InitInventaire() []Invent {
 	return []Invent{
 		{NomObj: "pièce d'or", Quantite: 100},
 		{NomObj: "potion de soin", Quantite: 2},
+		{NomObj: "liste de sort", Quantite: 2},
 		{NomObj: "potion de poison", Quantite: 0},
 		{NomObj: "chapeau en cuir", Quantite: 0},
 		{NomObj: "tunique en cuir", Quantite: 0},
@@ -65,10 +66,22 @@ func AfficherInvent(joueur *Character) {
 		fmt.Scan(&use)
 		if use == "y" {
 			var usechoix string
-			fmt.Print("Quel objet ? potions (pot), armure (arm) : ")
+			fmt.Print("Quel objet ? potions (pot), armure (arm) , sorts(spells): ")
 			fmt.Scan(&usechoix)
 
 			switch usechoix {
+			case "spells":
+				var typeSort string
+				fmt.Print("Choisissez le sort a utiliser (poing , feu) :")
+				fmt.Scan(&typeSort)
+
+				switch typeSort {
+				case "poing":
+					spellBook(joueur, "Coup de poing")
+				case "feu":
+					spellBook(joueur, "Boule de feu")
+				}
+
 			case "pot":
 				var typePot string
 				fmt.Print("Soin ou poison ? (s/p) : ")
