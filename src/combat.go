@@ -22,12 +22,21 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 	magazin := InitGandalf()
 	forge := InitGimly()
 	for {
+		if joueur.Pv <= 0 {
+			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
+			menu(joueur, magazin, forge)
+			return
+		}
+		if monstre.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Retour au menu principal.")
+			menu(joueur, magazin, forge)
+
+		}
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
 		fmt.Println("2 : Menu")
 		fmt.Print("Choix : ")
 		fmt.Scan(&choix)
-
 		switch choix {
 		case "1":
 			var typesort string
@@ -44,6 +53,7 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 				fmt.Println("\nCoup de poing")
 				degat = 10
 				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 10
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
@@ -53,6 +63,7 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 				fmt.Println("\nBoule de feu")
 				degat = 20
 				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 10
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
@@ -72,14 +83,19 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 	}
 }
 
-func isDead(joueur *Character) {
+func isDead(joueur *Character, monstre *Goblins) {
 	magazin := InitGandalf()
 	forge := InitGimly()
 	if joueur.Pv <= 0 {
 		fmt.Printf("\nDéfaite...  vous êtes KO.\n")
-		fmt.Println("Retour au menu principal...")
+		fmt.Println("Retour au menu principal...vous êtes pas très fort")
 		menu(joueur, magazin, forge)
 		return
+	}
+	if monstre.Pv <= 0 {
+		fmt.Printf("\nVictoire !")
+		fmt.Println("Retour au menu principal.")
+		menu(joueur, magazin, forge)
 	}
 }
 
