@@ -36,6 +36,7 @@ func InitGandalf() []Gandalf {
 		{Obj: "lingots de fer", Prix: 10},
 		{Obj: "minerais de mithril", Prix: 30},
 		{Obj: "Amelioration d'inventaire", Prix: 30},
+		{Obj: "Sort: Boule de feu", Prix: 10},
 	}
 }
 func InitGimly() []Gimly {
@@ -192,6 +193,9 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 		joueur.Inventaire[indexOr].Quantite -= article.Prix
 		trouve := false
 		for i := range joueur.Inventaire {
+			if article.Obj == "Sort: Boule de feu" {
+
+			}
 			if joueur.Inventaire[i].NomObj == article.Obj {
 				joueur.Inventaire[i].Quantite++
 				trouve = true
