@@ -64,7 +64,7 @@ func trainingFight(joueur *Character) {
 	gobelin := initGobelins()
 	tour := 1
 	fmt.Println("\n==========================================")
-	fmt.Printf("   DÉBUT DU COMBAT contre %s\n", gobelin.Nom)
+	fmt.Printf("      DÉBUT DU COMBAT contre %s\n", gobelin.Nom)
 	fmt.Println("==========================================")
 	for joueur.Pv > 0 && gobelin.Pv > 0 {
 		fmt.Printf("\n======TOUR %d ======\n", tour)
