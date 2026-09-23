@@ -75,21 +75,21 @@ func (c Character) DisplayInfo() {
 	fmt.Println("╚══════════════════════════════════════════════════╝")
 }
 func (c *Character) CharacterCreation() {
-	fmt.Println("nom de votre personnage :")
+	fmt.Println("Sélectionnez le nom de votre personnage :")
 	fmt.Scan(&c.Nom)
 	var choix string
 	for {
-		fmt.Println("classe de votre personnage : \n 1:humain \n 2:nain \n 3:hobbit")
+		fmt.Println("Sélectionnez la classe de votre personnage : \n 1:Humain \n 2:Hain \n 3:Hobbit")
 		fmt.Scan(&choix)
 		switch choix {
 		case "1":
-			c.Classe = "humain"
+			c.Classe = "Humain"
 			c.Pvmax = 100
 		case "2":
-			c.Classe = "nain"
+			c.Classe = "Nain"
 			c.Pvmax = 120
 		case "3":
-			c.Classe = "hobbit"
+			c.Classe = "Hobbit"
 			c.Pvmax = 80
 		default:
 			fmt.Println("\n Choix invalide ! Veuillez saisir 1, 2 ou 3.")

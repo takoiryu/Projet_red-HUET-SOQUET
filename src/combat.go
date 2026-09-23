@@ -37,16 +37,27 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 			fmt.Print("Votre choix : ")
 			fmt.Scan(&typesort)
 
-			var sort string
 			degat := 0
 
 			switch typesort {
 			case "1":
-				sort = "Coup de poing"
+				fmt.Println("\nCoup de poing")
 				degat = 10
+				monstre.Pv = monstre.Pv - degat
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
 			case "2":
-				sort = "Boule de feu"
+				fmt.Println("\nBoule de feu")
 				degat = 20
+				monstre.Pv = monstre.Pv - degat
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
 			default:
 				fmt.Println("Choix invalide.")
 				continue
