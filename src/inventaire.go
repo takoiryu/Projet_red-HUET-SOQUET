@@ -35,6 +35,65 @@ func UtiliserObjet(joueur *Character, nomObjet string) bool {
 				if nomObjet == "potion de soin" {
 					UtilPot(joueur)
 				}
+				var ancObj string
+				switch nomObjet {
+				case "chapeau en cuir":
+					ancObj = joueur.Equipement.Tete
+					joueur.Equipement.Tete = "chapeau en cuir"
+					joueur.Pvmax += 10
+				case "heaume en fer forgé":
+					ancObj = joueur.Equipement.Tete
+					joueur.Equipement.Tete = "heaume en fer forgé"
+					joueur.Pvmax += 20
+				case "tunique en cuir":
+					ancObj = joueur.Equipement.Torse
+					joueur.Equipement.Torse = "tunique en cuir"
+					joueur.Pvmax += 25
+				case "plastron en fer forgé":
+					ancObj = joueur.Equipement.Torse
+					joueur.Equipement.Torse = "plastron en fer forgé"
+					joueur.Pvmax += 40
+				case "cote de maille en mithril":
+					ancObj = joueur.Equipement.Torse
+					joueur.Equipement.Torse = "cote de maille en mithril"
+					joueur.Pvmax += 200
+				case "bottes en fer forgé":
+					ancObj = joueur.Equipement.Pieds
+					joueur.Equipement.Pieds = "bottes en fer forgé"
+					joueur.Pvmax += 30
+				case "bottes en cuir":
+					ancObj = joueur.Equipement.Pieds
+					joueur.Equipement.Pieds = "bottes en cuir"
+					joueur.Pvmax += 15
+				}
+				switch ancObj {
+				case "chapeau en cuir":
+					joueur.Pvmax -= 10
+				case "heaume en fer forgé":
+					joueur.Pvmax -= 20
+				case "tunique en cuir":
+					joueur.Pvmax -= 25
+				case "plastron en fer forgé":
+					joueur.Pvmax -= 40
+				case "cote de maille en mithril":
+					joueur.Pvmax -= 200
+				case "bottes en cuir":
+					joueur.Pvmax -= 15
+				case "bottes en fer forgé":
+					joueur.Pvmax -= 30
+				}
+				trouve := false
+				for i := range joueur.Inventaire {
+					if joueur.Inventaire[i].NomObj == ancObj {
+						joueur.Inventaire[i].Quantite++
+						trouve = true
+						break
+					}
+				}
+
+				if !trouve {
+					joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: ancObj, Quantite: 1})
+				}
 				return true
 			} else {
 				fmt.Printf("Vous n'avez plus de %s !\n", nomObjet)
@@ -136,13 +195,13 @@ func UtilPot(c *Character) {
 		c.Pv = c.Pvmax
 	}
 }
-func LimitInv(inv []Invent, taille *Character) bool {
+func LimitInv(inv []Invent, joueur *Character) bool {
 	somme := 0
 	for i := range inv {
-		somme += inv[i].Quantite
-		if somme >= taille.TailleMax {
-			return true
+		if inv[i].NomObj == "pièce d'or" {
+			continue
 		}
+		somme += inv[i].Quantite
 	}
-	return false
+	return somme >= joueur.TailleMax
 }

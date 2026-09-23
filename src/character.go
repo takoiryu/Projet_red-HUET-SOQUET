@@ -23,21 +23,6 @@ type Character struct {
 	NbrAmeliorationSac int
 }
 
-func InitCharacter(nom string, classe string, niveau int, pvmax int, pv int, atk int, inventaire []Invent, skillList []string, equipment Equipement) Character {
-	return Character{
-		Nom:        nom,
-		Classe:     classe,
-		Niveau:     niveau,
-		Pvmax:      pvmax,
-		Pv:         pv,
-		Atk:        atk,
-		Inventaire: inventaire,
-		Equipement: equipment,
-		SkillList:  skillList,
-		TailleMax:  10,
-	}
-}
-
 func (c Character) DisplayInfo() {
 	affpvmax := c.Pvmax
 	affpv := c.Pv
@@ -98,4 +83,5 @@ func (c *Character) CharacterCreation() {
 		break
 	}
 	c.Pv = c.Pvmax / 2
+	c.TailleMax = 10
 }

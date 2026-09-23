@@ -177,36 +177,34 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 		fmt.Printf("Sac agrandi ! Vous pouvez porter %d objets. (Amélioration %d sur 3)\n", joueur.TailleMax, joueur.NbrAmeliorationSac)
 		return
 	}
-	trop := LimitInv(joueur.Inventaire, joueur)
-	if trop == false {
-		indexOr := -1
-		for i := range joueur.Inventaire {
-			if joueur.Inventaire[i].NomObj == "pièce d'or" {
-				indexOr = i
-				break
-			}
-		}
-		if indexOr == -1 || joueur.Inventaire[indexOr].Quantite < article.Prix {
-			fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)|n", article.Obj, article.Prix)
-			return
-		}
-		joueur.Inventaire[indexOr].Quantite -= article.Prix
-		trouve := false
-		for i := range joueur.Inventaire {
-			if article.Obj == "Sort: Boule de feu" {
-
-			}
-			if joueur.Inventaire[i].NomObj == article.Obj {
-				joueur.Inventaire[i].Quantite++
-				trouve = true
-				break
-			}
-		}
-		if !trouve {
-			joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: article.Obj, Quantite: 1})
-		}
-		fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)|n", article.Obj, article.Prix)
-	} else {
-		fmt.Println("plus de place dans votre inventaire")
+	if LimitInv(joueur.Inventaire, joueur) {
+		fmt.Println("Plus de place dans votre inventaire pour un nouvel objet !")
+		return
 	}
+	indexOr := -1
+	for i := range joueur.Inventaire {
+		if joueur.Inventaire[i].NomObj == "pièce d'or" {
+			indexOr = i
+			break
+		}
+	}
+	if indexOr == -1 || joueur.Inventaire[indexOr].Quantite < article.Prix {
+		fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)|n", article.Obj, article.Prix)
+		return
+	}
+	joueur.Inventaire[indexOr].Quantite -= article.Prix
+	trouve := false
+	for i := range joueur.Inventaire {
+		if article.Obj == "Sort: Boule de feu" {
+		}
+		if joueur.Inventaire[i].NomObj == article.Obj {
+			joueur.Inventaire[i].Quantite++
+			trouve = true
+			break
+		}
+	}
+	if !trouve {
+		joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: article.Obj, Quantite: 1})
+	}
+	fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)|n", article.Obj, article.Prix)
 }
