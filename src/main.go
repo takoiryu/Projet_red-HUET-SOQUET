@@ -8,6 +8,7 @@ func main() {
 	var joueur Character
 	joueur.CharacterCreation()
 	joueur.Inventaire = InitInventaire()
+	joueur.DisplayInfo()
 	//magazin := InitGandalf()
 	//forge := InitGimly()
 	trainingFight(&joueur)
