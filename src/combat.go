@@ -51,6 +51,7 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 				fmt.Println("Choix invalide.")
 				continue
 			}
+			monstre.Pv -= degat
 		case "2":
 			menu(joueur, magazin, forge)
 			return
