@@ -28,7 +28,6 @@ func InitGandalf() []Gandalf {
 	return []Gandalf{
 		{Obj: "Potion de soin", Prix: 3},
 		{Obj: "Potion de poison", Prix: 6},
-		{Obj: "Livre de sort : boule de feu", Prix: 3},
 		{Obj: "Chapeau en cuir", Prix: 5},
 		{Obj: "Plastron en cuir", Prix: 7},
 		{Obj: "Bottes en cuir", Prix: 4},
@@ -36,7 +35,7 @@ func InitGandalf() []Gandalf {
 		{Obj: "Lingots de fer", Prix: 10},
 		{Obj: "Minerais de mithril", Prix: 30},
 		{Obj: "Amelioration d'inventaire", Prix: 30},
-		{Obj: "Sort: Boule de feu", Prix: 10},
+		{Obj: "Sort: Boule de feu", Prix: 3},
 	}
 }
 func InitGimly() []Gimly {
@@ -194,8 +193,6 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 	joueur.Inventaire[indexOr].Quantite -= article.Prix
 	trouve := false
 	for i := range joueur.Inventaire {
-		if article.Obj == "Sort: Boule de feu" {
-		}
 		if joueur.Inventaire[i].NomObj == article.Obj {
 			joueur.Inventaire[i].Quantite++
 			trouve = true
