@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 type Invent struct {
@@ -65,6 +66,8 @@ func UtiliserObjet(joueur *Character, nomObjet string) bool {
 					ancObj = joueur.Equipement.Pieds
 					joueur.Equipement.Pieds = "bottes en cuir"
 					joueur.Pvmax += 15
+				case "potion de poison":
+					PoisonPot(joueur)
 				}
 				switch ancObj {
 				case "chapeau en cuir":
@@ -204,4 +207,19 @@ func LimitInv(inv []Invent, joueur *Character) bool {
 		somme += inv[i].Quantite
 	}
 	return somme >= joueur.TailleMax
+}
+func PoisonPot(joueur *Character) {
+	fmt.Println("\n🧪 Vous buvez une potion de poison ! Le poison s'infiltre dans votre sang...")
+	for i := 1; i <= 3; i++ {
+		time.Sleep(1 * time.Second)
+		joueur.Pv -= 10
+		if joueur.Pv < 0 {
+			joueur.Pv = 0
+		}
+		fmt.Printf("🤢 Degâts du poison (%ds/3s) : -10 PV | PV actuels : %d/%d\n", i, joueur.Pv, joueur.Pvmax)
+		if joueur.Pv == 0 {
+			fmt.Println("💀 Vous avez succombé au poison...")
+			return
+		}
+	}
 }
