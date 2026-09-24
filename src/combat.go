@@ -459,7 +459,7 @@ func characterTurn5(joueur *Character, monstre *Sauron) {
 	forge := InitGimly()
 	for {
 		if joueur.Pv <= 0 {
-			fmt.Printf("\nDéfaite..vous êtes KO ..t'est pas très fort hein\n")
+			fmt.Printf("\nDéfaite..vous êtes KO ..t'est pas très fort hein.\n")
 			Fight4(joueur)
 			return
 		}
