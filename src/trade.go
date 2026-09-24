@@ -26,25 +26,25 @@ var recettes = map[string]Recette{
 
 func InitGandalf() []Gandalf {
 	return []Gandalf{
-		{Obj: "potion de soin", Prix: 3},
-		{Obj: "potion de poison", Prix: 6},
-		{Obj: "livre de sort : boule de feu", Prix: 3},
-		{Obj: "chapeau en cuir", Prix: 5},
-		{Obj: "plastron en cuir", Prix: 7},
-		{Obj: "bottes en cuir", Prix: 4},
-		{Obj: "cuir de goblin", Prix: 2},
-		{Obj: "lingots de fer", Prix: 10},
-		{Obj: "minerais de mithril", Prix: 30},
+		{Obj: "Potion de soin", Prix: 3},
+		{Obj: "Potion de poison", Prix: 6},
+		{Obj: "Livre de sort : boule de feu", Prix: 3},
+		{Obj: "Chapeau en cuir", Prix: 5},
+		{Obj: "Plastron en cuir", Prix: 7},
+		{Obj: "Bottes en cuir", Prix: 4},
+		{Obj: "Cuir de goblin", Prix: 2},
+		{Obj: "Lingots de fer", Prix: 10},
+		{Obj: "Minerais de mithril", Prix: 30},
 		{Obj: "Amelioration d'inventaire", Prix: 30},
 		{Obj: "Sort: Boule de feu", Prix: 10},
 	}
 }
 func InitGimly() []Gimly {
 	return []Gimly{
-		{Objarm: "heaume en fer forgé", Prixarm: 2},
-		{Objarm: "plastron en fer forgé", Prixarm: 3},
-		{Objarm: "bottes en fer forgé", Prixarm: 1},
-		{Objarm: "cote de maille en mithril", Prixarm: 10},
+		{Objarm: "Heaume en fer forgé", Prixarm: 2},
+		{Objarm: "Plastron en fer forgé", Prixarm: 3},
+		{Objarm: "Bottes en fer forgé", Prixarm: 1},
+		{Objarm: "Cote de maille en mithril", Prixarm: 10},
 	}
 }
 func AffGandalf(shop []Gandalf, joueur *Character) {
@@ -58,7 +58,7 @@ func AffGandalf(shop []Gandalf, joueur *Character) {
 	fmt.Println("╚══════════════════════════════════════════╝")
 	for {
 		var choix int
-		fmt.Print("\nQuel objet souhaitez-vous acheter (numéro) ? ")
+		fmt.Print("\n Quel objet souhaitez-vous acheter (numéro) ? ")
 		fmt.Scan(&choix)
 
 		switch {
@@ -134,7 +134,6 @@ func AcheterForge(joueur *Character, armure Gimly) {
 				joueur.Inventaire[i].Quantite -= qte
 			}
 		}
-		//la ca ajoutte le reultat a l'inv
 		trouve := false
 		for i := range joueur.Inventaire {
 			if joueur.Inventaire[i].NomObj == armure.Objarm {
@@ -149,7 +148,7 @@ func AcheterForge(joueur *Character, armure Gimly) {
 
 		fmt.Printf("Gimly a forgé votre %s !\n", armure.Objarm)
 	} else {
-		fmt.Println("plus de place dans votre inventaire")
+		fmt.Println("Plus de place dans votre inventaire")
 	}
 }
 func AcheterObjet(joueur *Character, article Gandalf) {
@@ -160,7 +159,7 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 		}
 		indexOr := -1
 		for i := range joueur.Inventaire {
-			if joueur.Inventaire[i].NomObj == "pièce d'or" {
+			if joueur.Inventaire[i].NomObj == "Pièce d'or" {
 				indexOr = i
 				break
 			}
@@ -183,7 +182,7 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 	}
 	indexOr := -1
 	for i := range joueur.Inventaire {
-		if joueur.Inventaire[i].NomObj == "pièce d'or" {
+		if joueur.Inventaire[i].NomObj == "Pièce d'or" {
 			indexOr = i
 			break
 		}

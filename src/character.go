@@ -64,7 +64,7 @@ func (c *Character) CharacterCreation() {
 	fmt.Scan(&c.Nom)
 	var choix string
 	for {
-		fmt.Println("Sélectionnez la classe de votre personnage : \n 1:Humain \n 2:Hain \n 3:Hobbit")
+		fmt.Println("Sélectionnez la classe de votre personnage : \n 1 : Humain \n 2 : Hain \n 3 : Hobbit")
 		fmt.Scan(&choix)
 		switch choix {
 		case "1":

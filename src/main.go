@@ -22,7 +22,7 @@ func main() {
 }
 func menu(joueur *Character, magazin []Gandalf, forge []Gimly) bool {
 	var choixmenu string
-	fmt.Println("\n--- MENU ---")
+	fmt.Println("\n======= MENU =======")
 	fmt.Println("1:Informations personages \n 2:Inventaire \n 3:Marchand \n 4:Forgeron \n 5:Retour \n 6:Quitter")
 	fmt.Scan(&choixmenu)
 	switch choixmenu {
