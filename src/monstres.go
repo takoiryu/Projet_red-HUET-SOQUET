@@ -10,7 +10,7 @@ type Goblins struct {
 
 func initGobelins() Goblins {
 	return Goblins{
-		Nom:    "Maxence",
+		Nom:    "Maxence le goblin",
 		Niveau: 1,
 		Pvmax:  40,
 		Pv:     40,
@@ -28,7 +28,7 @@ type Orcs struct {
 
 func initOrcs() Orcs {
 	return Orcs{
-		Nom:    "Thomas",
+		Nom:    "Thomas l'orc",
 		Niveau: 5,
 		Pvmax:  80,
 		Pv:     80,
@@ -46,7 +46,7 @@ type Wargs struct {
 
 func initWargs() Wargs {
 	return Wargs{
-		Nom:    "Dylan",
+		Nom:    "Dylan le warg",
 		Niveau: 10,
 		Pvmax:  150,
 		Pv:     150,
@@ -64,11 +64,11 @@ type Uruk_hai struct {
 
 func initUruk_hai() Uruk_hai {
 	return Uruk_hai{
-		Nom:    "Bob",
+		Nom:    "Bob l'uruk",
 		Niveau: 25,
 		Pvmax:  250,
 		Pv:     250,
-		Att:    50,
+		Att:    30,
 	}
 }
 
@@ -86,6 +86,6 @@ func initSauron() Sauron {
 		Niveau: 80,
 		Pvmax:  500,
 		Pv:     500,
-		Att:    125,
+		Att:    50,
 	}
 }

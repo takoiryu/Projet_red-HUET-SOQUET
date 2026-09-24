@@ -11,7 +11,11 @@ func main() {
 	joueur.DisplayInfo()
 	//magazin := InitGandalf()
 	//forge := InitGimly()
-	trainingFight(&joueur)
+	Fight1(&joueur)
+	Fight2(&joueur)
+	Fight3(&joueur)
+	Fight4(&joueur)
+	Fight5(&joueur)
 	//for !menu(&joueur, magazin, forge) {
 	//}
 

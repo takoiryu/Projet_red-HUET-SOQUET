@@ -30,7 +30,208 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 		if monstre.Pv <= 0 {
 			fmt.Printf("\nVictoire ! Retour au menu principal.")
 			menu(joueur, magazin, forge)
+		}
+		fmt.Println("\n===== TOUR DE JOUEUR =====")
+		fmt.Println("1 : Attaquer")
+		fmt.Println("2 : Menu")
+		fmt.Print("Choix : ")
+		fmt.Scan(&choix)
+		switch choix {
+		case "1":
+			var typesort string
+			fmt.Println("\nChoisissez votre sort :")
+			fmt.Println("1 : Coup de poing")
+			fmt.Println("2 : Boule de feu")
+			fmt.Print("Votre choix : ")
+			fmt.Scan(&typesort)
 
+			degat := 0
+
+			switch typesort {
+			case "1":
+				fmt.Println("\nCoup de poing")
+				degat = 10
+				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 5
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			case "2":
+				fmt.Println("\nBoule de feu")
+				degat = 20
+				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 5
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			default:
+				fmt.Println("Choix invalide.")
+				continue
+			}
+			monstre.Pv -= degat
+		case "2":
+			menu(joueur, magazin, forge)
+			return
+		default:
+			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
+		}
+	}
+}
+
+func Fight1(joueur *Character) {
+	gobelin := initGobelins()
+	tour := 1
+	fmt.Println("\n==========================================")
+	fmt.Printf("      DÉBUT DU COMBAT contre %s\n", gobelin.Nom)
+	fmt.Println("==========================================")
+	for joueur.Pv > 0 && gobelin.Pv > 0 {
+		fmt.Printf("\n======TOUR %d ======\n", tour)
+
+		characterTurn1(joueur, &gobelin)
+
+		if gobelin.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Vous avez terrassé %s !\n", gobelin.Nom)
+			fmt.Println("Retour au menu principal...")
+			return
+		}
+
+		goblinTurn(joueur, &gobelin, tour)
+
+		tour++
+	}
+}
+
+func orcsTurn(joueur *Character, orcs *Orcs, tour int) {
+	degats := orcs.Att
+	if tour%3 == 0 {
+		degats = orcs.Att * 2
+	}
+	joueur.Pv -= degats
+	if joueur.Pv < 0 {
+		joueur.Pv = 0
+	}
+	fmt.Printf("%s inflige à %s %d de dégâts !\n", orcs.Nom, joueur.Nom, degats)
+	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+}
+
+func characterTurn2(joueur *Character, orcs *Orcs) {
+	var choix string
+	magazin := InitGandalf()
+	forge := InitGimly()
+	for {
+		if joueur.Pv <= 0 {
+			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
+			menu(joueur, magazin, forge)
+			return
+		}
+		if orcs.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Retour au menu principal.")
+			menu(joueur, magazin, forge)
+		}
+		fmt.Println("\n===== TOUR DE JOUEUR =====")
+		fmt.Println("1 : Attaquer")
+		fmt.Println("2 : Menu")
+		fmt.Print("Choix : ")
+		fmt.Scan(&choix)
+		switch choix {
+		case "1":
+			var typesort string
+			fmt.Println("\nChoisissez votre sort :")
+			fmt.Println("1 : Coup de poing")
+			fmt.Println("2 : Boule de feu")
+			fmt.Print("Votre choix : ")
+			fmt.Scan(&typesort)
+
+			degat := 0
+
+			switch typesort {
+			case "1":
+				fmt.Println("\nCoup de poing")
+				degat = 10
+				orcs.Pv = orcs.Pv - degat
+				joueur.Pv -= 10
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, orcs.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", orcs.Nom, orcs.Pv, orcs.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", orcs.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			case "2":
+				fmt.Println("\nBoule de feu")
+				degat = 20
+				orcs.Pv = orcs.Pv - degat
+				joueur.Pv -= 10
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, orcs.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", orcs.Nom, orcs.Pv, orcs.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", orcs.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			default:
+				fmt.Println("Choix invalide.")
+				continue
+			}
+			orcs.Pv -= degat
+		case "2":
+			menu(joueur, magazin, forge)
+			return
+		default:
+			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
+		}
+	}
+}
+
+func Fight2(joueur *Character) {
+	orcs := initOrcs()
+	tour := 1
+	fmt.Println("\n==========================================")
+	fmt.Printf("      DÉBUT DU COMBAT contre %s\n", orcs.Nom)
+	fmt.Println("==========================================")
+	for joueur.Pv > 0 && orcs.Pv > 0 {
+		fmt.Printf("\n======TOUR %d ======\n", tour)
+
+		characterTurn2(joueur, &orcs)
+
+		if orcs.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Vous avez terrassé %s !\n", orcs.Nom)
+			fmt.Println("Retour au menu principal...")
+			return
+		}
+
+		orcsTurn(joueur, &orcs, tour)
+
+		tour++
+	}
+}
+
+func wargsTurn(joueur *Character, wargs *Wargs, tour int) {
+	degats := wargs.Att
+	if tour%3 == 0 {
+		degats = wargs.Att * 2
+	}
+	joueur.Pv -= degats
+	if joueur.Pv < 0 {
+		joueur.Pv = 0
+	}
+	fmt.Printf("%s inflige à %s %d de dégâts !\n", wargs.Nom, joueur.Nom, degats)
+	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+}
+
+func characterTurn3(joueur *Character, monstre *Wargs) {
+	var choix string
+	magazin := InitGandalf()
+	forge := InitGimly()
+	for {
+		if joueur.Pv <= 0 {
+			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
+			menu(joueur, magazin, forge)
+			return
+		}
+		if monstre.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Retour au menu principal.")
+			menu(joueur, magazin, forge)
 		}
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
@@ -83,40 +284,24 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 	}
 }
 
-func isDead(joueur *Character, monstre *Goblins) {
-	magazin := InitGandalf()
-	forge := InitGimly()
-	if joueur.Pv <= 0 {
-		fmt.Printf("\nDéfaite...  vous êtes KO.\n")
-		fmt.Println("Retour au menu principal...vous êtes pas très fort")
-		menu(joueur, magazin, forge)
-		return
-	}
-	if monstre.Pv <= 0 {
-		fmt.Printf("\nVictoire !")
-		fmt.Println("Retour au menu principal.")
-		menu(joueur, magazin, forge)
-	}
-}
-
-func trainingFight(joueur *Character) {
-	gobelin := initGobelins()
+func Fight3(joueur *Character) {
+	wargs := initWargs()
 	tour := 1
 	fmt.Println("\n==========================================")
-	fmt.Printf("      DÉBUT DU COMBAT contre %s\n", gobelin.Nom)
+	fmt.Printf("      DÉBUT DU COMBAT contre %s\n", wargs.Nom)
 	fmt.Println("==========================================")
-	for joueur.Pv > 0 && gobelin.Pv > 0 {
+	for joueur.Pv > 0 && wargs.Pv > 0 {
 		fmt.Printf("\n======TOUR %d ======\n", tour)
 
-		characterTurn1(joueur, &gobelin)
+		characterTurn3(joueur, &wargs)
 
-		if gobelin.Pv <= 0 {
-			fmt.Printf("\nVictoire ! Vous avez terrassé %s !\n", gobelin.Nom)
+		if wargs.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Vous avez terrassé %s !\n", wargs.Nom)
 			fmt.Println("Retour au menu principal...")
 			return
 		}
 
-		goblinTurn(joueur, &gobelin, tour)
+		wargsTurn(joueur, &wargs, tour)
 
 		tour++
 	}
