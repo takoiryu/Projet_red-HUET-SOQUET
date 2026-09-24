@@ -68,15 +68,20 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 20
-				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 5
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
-				degat = 0
-			default:
+				for i := range joueur.Inventaire {
+					if joueur.Inventaire[i].NomObj == "Sort: Boule de feu" && joueur.Inventaire[i].Quantite != 0 {
+						degat = 20
+						monstre.Pv = monstre.Pv - degat
+						joueur.Pv -= 5
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+						degat = 0
+						break
+					}
+				}
+				fmt.Println("vous n'avez pas encort apprit ce sort")
 				fmt.Println("Choix invalide.")
 				continue
 			}
@@ -177,15 +182,20 @@ func characterTurn2(joueur *Character, monstre *Orcs) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 20
-				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 10
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
-				degat = 0
-			default:
+				for i := range joueur.Inventaire {
+					if joueur.Inventaire[i].NomObj == "Sort: Boule de feu" && joueur.Inventaire[i].Quantite != 0 {
+						degat = 20
+						monstre.Pv = monstre.Pv - degat
+						joueur.Pv -= 10
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+						degat = 0
+						break
+					}
+				}
+				fmt.Println("vous n'avez pas encort apprit ce sort")
 				fmt.Println("Choix invalide.")
 				continue
 			}
@@ -286,22 +296,27 @@ func characterTurn3(joueur *Character, monstre *Wargs) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 30
-				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 25
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
-				degat = 0
-			default:
+				for i := range joueur.Inventaire {
+					if joueur.Inventaire[i].NomObj == "Sort: Boule de feu" && joueur.Inventaire[i].Quantite != 0 {
+						degat = 30
+						monstre.Pv = monstre.Pv - degat
+						joueur.Pv -= 25
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+						degat = 0
+						break
+					}
+				}
+				fmt.Println("vous n'avez pas encort apprit ce sort")
 				fmt.Println("Choix invalide.")
 				continue
 			}
 			monstre.Pv -= degat
 		case "2":
 			menu(joueur, magazin, forge)
-			return
+
 		default:
 			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
 		}
@@ -387,7 +402,7 @@ func characterTurn4(joueur *Character, monstre *Uruk_hai) {
 				fmt.Println("\nCoup de poing")
 				degat = 10
 				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 10
+				joueur.Pv -= 30
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
@@ -395,15 +410,20 @@ func characterTurn4(joueur *Character, monstre *Uruk_hai) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 30
-				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 30
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
-				degat = 0
-			default:
+				for i := range joueur.Inventaire {
+					if joueur.Inventaire[i].NomObj == "Sort: Boule de feu" && joueur.Inventaire[i].Quantite != 0 {
+						degat = 30
+						monstre.Pv = monstre.Pv - degat
+						joueur.Pv -= 30
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+						degat = 0
+						break
+					}
+				}
+				fmt.Println("vous n'avez pas encort apprit ce sort")
 				fmt.Println("Choix invalide.")
 				continue
 			}
@@ -495,7 +515,7 @@ func characterTurn5(joueur *Character, monstre *Sauron) {
 				fmt.Println("\nCoup de poing")
 				degat = 10
 				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 10
+				joueur.Pv -= 50
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
@@ -503,15 +523,20 @@ func characterTurn5(joueur *Character, monstre *Sauron) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 30
-				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 50
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
-				degat = 0
-			default:
+				for i := range joueur.Inventaire {
+					if joueur.Inventaire[i].NomObj == "Sort: Boule de feu" && joueur.Inventaire[i].Quantite != 0 {
+						degat = 30
+						monstre.Pv = monstre.Pv - degat
+						joueur.Pv -= 50
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+						fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+						fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+						degat = 0
+						break
+					}
+				}
+				fmt.Println("vous n'avez pas encort apprit ce sort")
 				fmt.Println("Choix invalide.")
 				continue
 			}
