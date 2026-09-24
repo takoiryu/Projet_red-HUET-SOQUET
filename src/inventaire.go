@@ -12,19 +12,20 @@ type Invent struct {
 
 func InitInventaire() []Invent {
 	return []Invent{
-		{NomObj: "Pièce d'or", Quantite: 100},
-		{NomObj: "Potion de soin", Quantite: 2},
-		{NomObj: "Potion de poison", Quantite: 0},
-		{NomObj: "Chapeau en cuir", Quantite: 0},
-		{NomObj: "Tunique en cuir", Quantite: 0},
-		{NomObj: "Bottes en cuir", Quantite: 0},
-		{NomObj: "Heaume en fer forgé", Quantite: 0},
-		{NomObj: "Plastron en fer forgé", Quantite: 0},
-		{NomObj: "Bottes en fer forgé", Quantite: 0},
-		{NomObj: "Cote de maille en mithril", Quantite: 0},
-		{NomObj: "Cuir de goblin", Quantite: 0},
-		{NomObj: "Mingots de fer", Quantite: 0},
-		{NomObj: "Minerais de mithril", Quantite: 0},
+		{NomObj: "pièce d'or", Quantite: 100},
+		{NomObj: "potion de soin", Quantite: 2},
+		{NomObj: "potion de poison", Quantite: 0},
+		{NomObj: "chapeau en cuir", Quantite: 0},
+		{NomObj: "tunique en cuir", Quantite: 0},
+		{NomObj: "bottes en cuir", Quantite: 0},
+		{NomObj: "heaume en fer forgé", Quantite: 0},
+		{NomObj: "plastron en fer forgé", Quantite: 0},
+		{NomObj: "bottes en fer forgé", Quantite: 0},
+		{NomObj: "cote de maille en mithril", Quantite: 0},
+		{NomObj: "cuir de goblin", Quantite: 0},
+		{NomObj: "lingots de fer", Quantite: 0},
+		{NomObj: "minerais de mithril", Quantite: 0},
+		{NomObj: "Sort: Boule de feu", Quantite: 0},
 	}
 }
 func UtiliserObjet(joueur *Character, nomObjet string) bool {
@@ -33,8 +34,11 @@ func UtiliserObjet(joueur *Character, nomObjet string) bool {
 			if joueur.Inventaire[i].Quantite > 0 {
 				joueur.Inventaire[i].Quantite--
 				fmt.Printf("Vous avez utilisé : %s (Reste : %d)\n", nomObjet, joueur.Inventaire[i].Quantite)
-				if nomObjet == "Potion de soin" {
+				if nomObjet == "potion de soin" {
 					UtilPot(joueur)
+				}
+				if nomObjet == "Sort: Boule de feu" {
+					joueur.Inventaire[i].Quantite++
 				}
 				var ancObj string
 				switch nomObjet {
