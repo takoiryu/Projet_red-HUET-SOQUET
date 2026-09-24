@@ -306,3 +306,205 @@ func Fight3(joueur *Character) {
 		tour++
 	}
 }
+
+func uruk_haiTurn(joueur *Character, uruk_hai *Uruk_hai, tour int) {
+	degats := uruk_hai.Att
+	if tour%3 == 0 {
+		degats = uruk_hai.Att * 2
+	}
+	joueur.Pv -= degats
+	if joueur.Pv < 0 {
+		joueur.Pv = 0
+	}
+	fmt.Printf("%s inflige à %s %d de dégâts !\n", uruk_hai.Nom, joueur.Nom, degats)
+	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+}
+
+func characterTurn4(joueur *Character, monstre *Uruk_hai) {
+	var choix string
+	magazin := InitGandalf()
+	forge := InitGimly()
+	for {
+		if joueur.Pv <= 0 {
+			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
+			menu(joueur, magazin, forge)
+			return
+		}
+		if monstre.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Retour au menu principal.")
+			menu(joueur, magazin, forge)
+		}
+		fmt.Println("\n===== TOUR DE JOUEUR =====")
+		fmt.Println("1 : Attaquer")
+		fmt.Println("2 : Menu")
+		fmt.Print("Choix : ")
+		fmt.Scan(&choix)
+		switch choix {
+		case "1":
+			var typesort string
+			fmt.Println("\nChoisissez votre sort :")
+			fmt.Println("1 : Coup de poing")
+			fmt.Println("2 : Boule de feu")
+			fmt.Print("Votre choix : ")
+			fmt.Scan(&typesort)
+
+			degat := 0
+
+			switch typesort {
+			case "1":
+				fmt.Println("\nCoup de poing")
+				degat = 10
+				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 10
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			case "2":
+				fmt.Println("\nBoule de feu")
+				degat = 20
+				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 10
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			default:
+				fmt.Println("Choix invalide.")
+				continue
+			}
+			monstre.Pv -= degat
+		case "2":
+			menu(joueur, magazin, forge)
+			return
+		default:
+			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
+		}
+	}
+}
+
+func Fight4(joueur *Character) {
+	uruk_hai := initUruk_hai()
+	tour := 1
+	fmt.Println("\n==========================================")
+	fmt.Printf("      DÉBUT DU COMBAT contre %s\n", uruk_hai.Nom)
+	fmt.Println("==========================================")
+	for joueur.Pv > 0 && uruk_hai.Pv > 0 {
+		fmt.Printf("\n======TOUR %d ======\n", tour)
+
+		characterTurn4(joueur, &uruk_hai)
+
+		if uruk_hai.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Vous avez terrassé %s !\n", uruk_hai.Nom)
+			fmt.Println("Retour au menu principal...")
+			return
+		}
+
+		uruk_haiTurn(joueur, &uruk_hai, tour)
+
+		tour++
+	}
+}
+
+func sauronTurn(joueur *Character, sauron *Sauron, tour int) {
+	degats := sauron.Att
+	if tour%3 == 0 {
+		degats = sauron.Att * 2
+	}
+	joueur.Pv -= degats
+	if joueur.Pv < 0 {
+		joueur.Pv = 0
+	}
+	fmt.Printf("%s inflige à %s %d de dégâts !\n", sauron.Nom, joueur.Nom, degats)
+	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+}
+
+func characterTurn5(joueur *Character, monstre *Sauron) {
+	var choix string
+	magazin := InitGandalf()
+	forge := InitGimly()
+	for {
+		if joueur.Pv <= 0 {
+			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
+			menu(joueur, magazin, forge)
+			return
+		}
+		if monstre.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Retour au menu principal.")
+			menu(joueur, magazin, forge)
+		}
+		fmt.Println("\n===== TOUR DE JOUEUR =====")
+		fmt.Println("1 : Attaquer")
+		fmt.Println("2 : Menu")
+		fmt.Print("Choix : ")
+		fmt.Scan(&choix)
+		switch choix {
+		case "1":
+			var typesort string
+			fmt.Println("\nChoisissez votre sort :")
+			fmt.Println("1 : Coup de poing")
+			fmt.Println("2 : Boule de feu")
+			fmt.Print("Votre choix : ")
+			fmt.Scan(&typesort)
+
+			degat := 0
+
+			switch typesort {
+			case "1":
+				fmt.Println("\nCoup de poing")
+				degat = 10
+				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 10
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			case "2":
+				fmt.Println("\nBoule de feu")
+				degat = 20
+				monstre.Pv = monstre.Pv - degat
+				joueur.Pv -= 10
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
+				degat = 0
+			default:
+				fmt.Println("Choix invalide.")
+				continue
+			}
+			monstre.Pv -= degat
+		case "2":
+			menu(joueur, magazin, forge)
+			return
+		default:
+			fmt.Println("\nChoix invalide ! Veuillez saisir 1 ou 2.")
+		}
+	}
+}
+
+func Fight5(joueur *Character) {
+	sauron := initSauron()
+	tour := 1
+	fmt.Println("\n==========================================")
+	fmt.Printf("      DÉBUT DU COMBAT contre %s\n", sauron.Nom)
+	fmt.Println("==========================================")
+	for joueur.Pv > 0 && sauron.Pv > 0 {
+		fmt.Printf("\n======TOUR %d ======\n", tour)
+
+		characterTurn5(joueur, &sauron)
+
+		if sauron.Pv <= 0 {
+			fmt.Printf("\nVictoire ! Vous avez terrassé %s !\n", sauron.Nom)
+			fmt.Println("Retour au menu principal...")
+			return
+		}
+
+		sauronTurn(joueur, &sauron, tour)
+
+		tour++
+	}
+}
