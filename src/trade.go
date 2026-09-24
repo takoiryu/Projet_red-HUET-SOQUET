@@ -26,14 +26,14 @@ var recettes = map[string]Recette{
 
 func InitGandalf() []Gandalf {
 	return []Gandalf{
-		{Obj: "Potion de soin", Prix: 3},
-		{Obj: "Potion de poison", Prix: 6},
-		{Obj: "Chapeau en cuir", Prix: 5},
-		{Obj: "Plastron en cuir", Prix: 7},
-		{Obj: "Bottes en cuir", Prix: 4},
-		{Obj: "Cuir de goblin", Prix: 2},
-		{Obj: "Lingots de fer", Prix: 10},
-		{Obj: "Minerais de mithril", Prix: 30},
+		{Obj: "potion de soin", Prix: 3},
+		{Obj: "potion de poison", Prix: 6},
+		{Obj: "chapeau en cuir", Prix: 5},
+		{Obj: "tunique en cuir", Prix: 7},
+		{Obj: "bottes en cuir", Prix: 4},
+		{Obj: "cuir de goblin", Prix: 2},
+		{Obj: "lingots de fer", Prix: 10},
+		{Obj: "minerais de mithril", Prix: 30},
 		{Obj: "Amelioration d'inventaire", Prix: 30},
 		{Obj: "Sort: Boule de feu", Prix: 3},
 	}
@@ -181,13 +181,13 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 	}
 	indexOr := -1
 	for i := range joueur.Inventaire {
-		if joueur.Inventaire[i].NomObj == "Pièce d'or" {
+		if joueur.Inventaire[i].NomObj == "pièce d'or" {
 			indexOr = i
 			break
 		}
 	}
 	if indexOr == -1 || joueur.Inventaire[indexOr].Quantite < article.Prix {
-		fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)|n", article.Obj, article.Prix)
+		fmt.Printf("Vous n'avez pas assez d'or pour acheter %s ! (Prix : %d)\n", article.Obj, article.Prix)
 		return
 	}
 	joueur.Inventaire[indexOr].Quantite -= article.Prix
@@ -202,5 +202,5 @@ func AcheterObjet(joueur *Character, article Gandalf) {
 	if !trouve {
 		joueur.Inventaire = append(joueur.Inventaire, Invent{NomObj: article.Obj, Quantite: 1})
 	}
-	fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)|n", article.Obj, article.Prix)
+	fmt.Printf("Achat réussi ! Vous avez acheté : %s (-%d pièces d'or)\n", article.Obj, article.Prix)
 }

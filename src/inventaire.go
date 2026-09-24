@@ -161,7 +161,7 @@ func AfficherInvent(joueur *Character) {
 					case "t":
 						UtiliserObjet(joueur, "chapeau en cuir")
 					case "c":
-						UtiliserObjet(joueur, "plastron en fer forgé")
+						UtiliserObjet(joueur, "tunique en cuir")
 					case "p":
 						UtiliserObjet(joueur, "bottes en cuir")
 					default:

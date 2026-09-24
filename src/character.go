@@ -82,6 +82,6 @@ func (c *Character) CharacterCreation() {
 		}
 		break
 	}
-	c.Pv = c.Pvmax / 2
+	c.Pv = 2000
 	c.TailleMax = 10
 }

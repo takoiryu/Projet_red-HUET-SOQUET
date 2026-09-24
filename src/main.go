@@ -16,6 +16,7 @@ func main() {
 	Fight3(&joueur)
 	Fight4(&joueur)
 	Fight5(&joueur)
+
 	//for !menu(&joueur, magazin, forge) {
 	//}
 
