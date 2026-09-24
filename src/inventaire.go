@@ -219,6 +219,8 @@ func PoisonPot(joueur *Character) {
 		fmt.Printf("🤢 Degâts du poison (%ds/3s) : -10 PV | PV actuels : %d/%d\n", i, joueur.Pv, joueur.Pvmax)
 		if joueur.Pv == 0 {
 			fmt.Println("💀 Vous avez succombé au poison...")
+			joueur.Niveau = 1
+			joueur.Pv = joueur.Pvmax / 2
 			return
 		}
 	}
