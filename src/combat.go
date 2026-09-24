@@ -23,13 +23,21 @@ func characterTurn1(joueur *Character, monstre *Goblins) {
 	forge := InitGimly()
 	for {
 		if joueur.Pv <= 0 {
-			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
-			menu(joueur, magazin, forge)
+			fmt.Printf("\nDéfaite..vous êtes KO ..t'est pas très fort hein\n")
+			Fight1(joueur)
 			return
 		}
 		if monstre.Pv <= 0 {
-			fmt.Printf("\nVictoire ! Retour au menu principal.")
-			menu(joueur, magazin, forge)
+			for i := range joueur.Inventaire {
+				if joueur.Inventaire[i].NomObj == "pièce d'or" {
+					joueur.Inventaire[i].Quantite += 5
+					fmt.Println("\nVous gagnez 5 pièces d'or !")
+					break
+				}
+			}
+			fmt.Printf("\nVictoire ! Prochain combat.\n")
+			Fight2(joueur)
+			return
 		}
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
@@ -118,19 +126,27 @@ func orcsTurn(joueur *Character, orcs *Orcs, tour int) {
 	fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
 }
 
-func characterTurn2(joueur *Character, orcs *Orcs) {
+func characterTurn2(joueur *Character, monstre *Orcs) {
 	var choix string
 	magazin := InitGandalf()
 	forge := InitGimly()
 	for {
 		if joueur.Pv <= 0 {
-			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
-			menu(joueur, magazin, forge)
+			fmt.Printf("\nDéfaite..vous êtes KO ..t'est pas très fort hein\n")
+			Fight2(joueur)
 			return
 		}
-		if orcs.Pv <= 0 {
-			fmt.Printf("\nVictoire ! Retour au menu principal.")
-			menu(joueur, magazin, forge)
+		if monstre.Pv <= 0 {
+			for i := range joueur.Inventaire {
+				if joueur.Inventaire[i].NomObj == "pièce d'or" {
+					joueur.Inventaire[i].Quantite += 10
+					fmt.Println("\nVous gagnez 10 pièces d'or !")
+					break
+				}
+			}
+			fmt.Printf("\nVictoire ! Prochain combat.\n")
+			Fight3(joueur)
+			return
 		}
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
@@ -152,28 +168,28 @@ func characterTurn2(joueur *Character, orcs *Orcs) {
 			case "1":
 				fmt.Println("\nCoup de poing")
 				degat = 10
-				orcs.Pv = orcs.Pv - degat
+				monstre.Pv = monstre.Pv - degat
 				joueur.Pv -= 10
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, orcs.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", orcs.Nom, orcs.Pv, orcs.Pvmax)
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", orcs.Nom, joueur.Nom, degat)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
 				degat = 20
-				orcs.Pv = orcs.Pv - degat
+				monstre.Pv = monstre.Pv - degat
 				joueur.Pv -= 10
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, orcs.Nom, degat)
-				fmt.Printf("Santé de %s : %d/%d PV\n", orcs.Nom, orcs.Pv, orcs.Pvmax)
-				fmt.Printf("%s inflige à %s %d de dégâts !\n", orcs.Nom, joueur.Nom, degat)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
+				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
+				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", joueur.Nom, joueur.Pv, joueur.Pvmax)
 				degat = 0
 			default:
 				fmt.Println("Choix invalide.")
 				continue
 			}
-			orcs.Pv -= degat
+			monstre.Pv -= degat
 		case "2":
 			menu(joueur, magazin, forge)
 			return
@@ -225,13 +241,21 @@ func characterTurn3(joueur *Character, monstre *Wargs) {
 	forge := InitGimly()
 	for {
 		if joueur.Pv <= 0 {
-			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
-			menu(joueur, magazin, forge)
+			fmt.Printf("\nDéfaite..vous êtes KO ..t'est pas très fort hein\n")
+			Fight3(joueur)
 			return
 		}
 		if monstre.Pv <= 0 {
-			fmt.Printf("\nVictoire ! Retour au menu principal.")
-			menu(joueur, magazin, forge)
+			for i := range joueur.Inventaire {
+				if joueur.Inventaire[i].NomObj == "pièce d'or" {
+					joueur.Inventaire[i].Quantite += 20
+					fmt.Println("\nVous gagnez 20 pièces d'or !")
+					break
+				}
+			}
+			fmt.Printf("\nVictoire ! Prochain combat.\n")
+			Fight4(joueur)
+			return
 		}
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
@@ -254,7 +278,7 @@ func characterTurn3(joueur *Character, monstre *Wargs) {
 				fmt.Println("\nCoup de poing")
 				degat = 10
 				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 10
+				joueur.Pv -= 25
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
@@ -262,9 +286,9 @@ func characterTurn3(joueur *Character, monstre *Wargs) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 20
+				degat = 30
 				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 10
+				joueur.Pv -= 25
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
@@ -326,13 +350,21 @@ func characterTurn4(joueur *Character, monstre *Uruk_hai) {
 	forge := InitGimly()
 	for {
 		if joueur.Pv <= 0 {
-			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
-			menu(joueur, magazin, forge)
+			fmt.Printf("\nDéfaite..vous êtes KO ..t'est pas très fort hein\n")
+			Fight4(joueur)
 			return
 		}
 		if monstre.Pv <= 0 {
-			fmt.Printf("\nVictoire ! Retour au menu principal.")
-			menu(joueur, magazin, forge)
+			for i := range joueur.Inventaire {
+				if joueur.Inventaire[i].NomObj == "pièce d'or" {
+					joueur.Inventaire[i].Quantite += 40
+					fmt.Println("\nVous gagnez 40 pièces d'or !")
+					break
+				}
+			}
+			fmt.Printf("\nVictoire ! Prochain combat.\n")
+			Fight5(joueur)
+			return
 		}
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
@@ -363,9 +395,9 @@ func characterTurn4(joueur *Character, monstre *Uruk_hai) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 20
+				degat = 30
 				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 10
+				joueur.Pv -= 30
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)
@@ -427,13 +459,20 @@ func characterTurn5(joueur *Character, monstre *Sauron) {
 	forge := InitGimly()
 	for {
 		if joueur.Pv <= 0 {
-			fmt.Printf("\nDéfaite...  vous êtes KO. Retour au menu principal...vous êtes pas très fort\n")
-			menu(joueur, magazin, forge)
+			fmt.Printf("\nDéfaite..vous êtes KO ..t'est pas très fort hein\n")
+			Fight4(joueur)
 			return
 		}
 		if monstre.Pv <= 0 {
-			fmt.Printf("\nVictoire ! Retour au menu principal.")
-			menu(joueur, magazin, forge)
+			for i := range joueur.Inventaire {
+				if joueur.Inventaire[i].NomObj == "pièce d'or" {
+					joueur.Inventaire[i].Quantite += 100
+					fmt.Println("\nVous gagnez 100 pièces d'or !")
+					break
+				}
+			}
+			fmt.Printf("\nVictoire ! La terre du milieu est sauvée !\n")
+			return
 		}
 		fmt.Println("\n===== TOUR DE JOUEUR =====")
 		fmt.Println("1 : Attaquer")
@@ -464,9 +503,9 @@ func characterTurn5(joueur *Character, monstre *Sauron) {
 				degat = 0
 			case "2":
 				fmt.Println("\nBoule de feu")
-				degat = 20
+				degat = 30
 				monstre.Pv = monstre.Pv - degat
-				joueur.Pv -= 10
+				joueur.Pv -= 50
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", joueur.Nom, monstre.Nom, degat)
 				fmt.Printf("Santé de %s : %d/%d PV\n", monstre.Nom, monstre.Pv, monstre.Pvmax)
 				fmt.Printf("%s inflige à %s %d de dégâts !\n", monstre.Nom, joueur.Nom, degat)

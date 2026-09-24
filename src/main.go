@@ -23,7 +23,7 @@ func main() {
 func menu(joueur *Character, magazin []Gandalf, forge []Gimly) bool {
 	var choixmenu string
 	fmt.Println("\n--- MENU ---")
-	fmt.Println("1:Afficher les informations du personnage \n 2:Accéder au contenu de l inventaire \n 3:marchand \n 4:forgeron \n 5:retour \n 6:Quitter")
+	fmt.Println("1:Informations personages \n 2:Inventaire \n 3:Marchand \n 4:Forgeron \n 5:Retour \n 6:Quitter")
 	fmt.Scan(&choixmenu)
 	switch choixmenu {
 	case "1":
