@@ -15,6 +15,7 @@ func main() {
 █▓▓▀▀▀▀▀▀▀█ █▀▀▀▀▀▀▀▀█ █▓▓▓▀▀▀▓▓▓█ █▓▓█    █▓▓█ █▓▓█ █▓▓▓▀▀▀▓▓▓█
 █▄▄▄▄▄▄▄▄▄█ █▄▄▄▄▄▄▄▄█ █▄▄▄▄▄▄▄▄▀  █▄▄█    █▄▄█ █▄▄█ █▄▄▄▄▄▄▄▄▀ `)
 	fmt.Println(` 🌋  L'OMBRE DE SAURON SUR LA TERRE DU MILIEU - Eldrid
+
 Le Seigneur Ténébreux Sauron s'éveille à nouveau, menaçant de plonger la Terre du Milieu dans une nuit éternelle. Vous incarnez un jeune aventurier parti de rien, dernier rempart face au chaos grandissant.
 
 ⚔️ 	VOTRE MISSION :
