@@ -5,6 +5,28 @@ import (
 )
 
 func main() {
+	fmt.Println(`▓▄▄▄▄▄▄▄▄▄▓ ▓▄▄▓       ▓▄▄▄▄▄▄▄▄▄  ▓▄▄▄▄▄▄▄▄    ▓▄▄▓ ▓▄▄▄▄▄▄▄▄▄ 
+▒▀▀▀▀▀▀▀▀▀▒ ▒▓▓▒       ▒▀▀▀▀▀▀▓▓▓▒ ▒▀▀▀▀▀▓▓▓▄▄  ▒▀▀▒ ▒▀▀▀▀▀▀▓▓▓▒
+▄▄▄▄        ░▒▒░       ▄▄▄▄   ░▒▒░ ▄▄▄▄  ▀▀▒▒▒░ ▄▄▄▄ ▄▄▄▄   ░▒▒░
+█▓▓█ █▄▄█   █░░█       ░░░░   █░░█ ░░░░   ░░░▀▀ █░░█ ░░░░   █░░█
+▒  ▒ ▒▄▄▒   ░  ░       ░  ░   ░  ░ ░  ░ ▄▀ ▄▀   ▒  ▒ ░  ░   ░  ░
+▓░░▓        ▓  ▓       ▓░░▓   ▓░░▓ ▓░░▓ ▀▄░░▀▄  ▓░░▓ ▓░░▓   ▓░░▓
+█▒▒█        ▀▀▀▀       █▒▒█   █▒▒█ █▒▒█   ▀▄▒▒█ █▒▒█ █▒▒█   █▒▒█
+█▓▓▀▀▀▀▀▀▀█ █▀▀▀▀▀▀▀▀█ █▓▓▓▀▀▀▓▓▓█ █▓▓█    █▓▓█ █▓▓█ █▓▓▓▀▀▀▓▓▓█
+█▄▄▄▄▄▄▄▄▄█ █▄▄▄▄▄▄▄▄█ █▄▄▄▄▄▄▄▄▀  █▄▄█    █▄▄█ █▄▄█ █▄▄▄▄▄▄▄▄▀ `)
+	fmt.Println(` 🌋  L'OMBRE DE SAURON SUR LA TERRE DU MILIEU - Eldrid
+Le Seigneur Ténébreux Sauron s'éveille à nouveau, menaçant de plonger la Terre du Milieu dans une nuit éternelle. Vous incarnez un jeune aventurier parti de rien, dernier rempart face au chaos grandissant.
+
+⚔️ 	VOTRE MISSION :
+
+PREPAREZ-VOUS : Visitez Gandalf pour acheter potions et livres de sorts, et passez voir Gimli à la forge pour concevoir des armures en fer et en mithril.
+
+COMBATTEZ : Affrontez des hordes de monstres, accumulez de l'or et maîtrisez la magie.
+
+L'ULTIME DEFI : Survivez aux épreuves jusqu'à faire face à Sauron lui-même dans un affrontement final pour le destin du monde.
+
+Serez-vous le HEROS capable de terrasser le Seigneur Ténébreux ?
+|`)
 	var joueur Character
 	joueur.CharacterCreation()
 	joueur.Inventaire = InitInventaire()
@@ -16,7 +38,6 @@ func main() {
 	Fight3(&joueur)
 	Fight4(&joueur)
 	Fight5(&joueur)
-
 	//for !menu(&joueur, magazin, forge) {
 	//}
 
